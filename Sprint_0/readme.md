@@ -1,0 +1,1 @@
+Folder containing all group meeting documents
