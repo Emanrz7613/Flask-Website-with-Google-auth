@@ -7,7 +7,7 @@ from src.models import db
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI']=\
-    'mysql://root:Ultimatemtg*11@localhost:3306/sqlalchemy?charset=utf8mb4'
+    'mysql://root:password@localhost:3306/sqlalchemy?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 db.init_app(app)
