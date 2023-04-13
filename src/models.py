@@ -23,6 +23,13 @@ class Courses(db.Model):
     course_num = db.Column(db.String(4), nullable=False)
     course_title = db.Column(db.String(50), nullable=False)
 
+@staticmethod
+def get_course_id(subject, course_num):
+    course = Courses.query.filter_by(subject=subject, course_num=course_num).first()
+    if course:
+        return course.course_id
+    return None
+
 class Ratings(db.Model):
     rating_id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'), nullable=False)
