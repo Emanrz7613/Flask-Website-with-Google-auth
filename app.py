@@ -40,7 +40,7 @@ def create_rating():
     if class_name == '' or prof_name == '' or rating < 1 or rating > 5 or semester == '':
         abort(400)
     created_rating = rating_repository_singleton.create_movie(class_name, prof_name, rating, semester, desc)
-    return redirect(f'/movies/{created_rating.rating_id}')
+    return redirect(f'/ratings/{created_rating.rating_id}')
 
 if __name__ == '__main__':
     app.run(debug=True)
