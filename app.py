@@ -42,5 +42,13 @@ def create_rating():
     created_rating = rating_repository_singleton.create_movie(class_name, prof_name, rating, semester, desc)
     return redirect(f'/ratings/{created_rating.rating_id}')
 
+@app.get('/ratings/search')
+def search_ratings():
+    found_ratings = []
+    q = request.args.get('q', '')
+    if q != '':
+        found_ratings = rating_repository_singleton.search_ratings(q)
+    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q)
+
 if __name__ == '__main__':
     app.run(debug=True)
