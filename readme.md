@@ -2,4 +2,4 @@ To install the required packages use this command in the terminal. Make sure you
 
 pip install -r requirements.txt
 
-
+Install the database in MySQL Workbench by running the database_schema.sql file
