@@ -1,4 +1,4 @@
-from src.models import db, Movie
+from src.models import *
 class ReviewRepository:
 
     def get_all_reviews(self):
