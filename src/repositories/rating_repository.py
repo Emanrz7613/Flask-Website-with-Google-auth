@@ -9,7 +9,7 @@ class RatingRepository:
         #Abstract
         return
 
-    def create_rating(self, class_name, prof_name, rating, desc):
+    def create_rating(self, class_name, prof_name, rating, semester, desc):
         #Abstract
         return
 
