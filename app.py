@@ -22,24 +22,28 @@ def list_all_ratings():
     return render_template('list_all_ratings.html', list_ratings_active=True, ratings=all_ratings)
 
 @app.get('/ratings/<int:rating_id>')
-def get_single_movie(rating_id):
+def get_single_rating(rating_id):
     single_rating = rating_repository_singleton.get_rating_by_id(rating_id)
     return render_template('get_single_rating.html', rating=single_rating)
 
 @app.get('/ratings/new')
-def create_movies_form():
+def create_ratings_form():
     return render_template('create_ratings_form.html')
 
 @app.post('/ratings')
 def create_rating():
-    class_name = request.form.get('class', '')
-    prof_name = request.form.get('professor', '')
+    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login
+    user_id = request.form.get('user_id', '')
+    first_name = request.form.get('first_name', '')
+    last_name = request.form.get('last_name', '')
+    subject = request.form.get('subject', '')
+    course_num = request.form.get('course_num', '')
     rating = request.form.get('rating', 1, type=int)
     semester = request.form.get('semeseter', '')
     desc = request.form.get('desc', '', type=str)
-    if class_name == '' or prof_name == '' or rating < 1 or rating > 5 or semester == '':
+    if rating < 1 or rating > 5 or semester == '' or subject == '' or course_num == '':
         abort(400)
-    created_rating = rating_repository_singleton.create_movie(class_name, prof_name, rating, semester, desc)
+    created_rating = rating_repository_singleton.create_rating(user_id, first_name, last_name, subject, course_num, rating, semester, desc)
     return redirect(f'/ratings/{created_rating.rating_id}')
 
 @app.get('/ratings/search')

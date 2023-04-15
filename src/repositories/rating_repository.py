@@ -2,7 +2,7 @@ from src.models import *
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-class ReviewRepository:
+class RatingRepository:
 
     def get_all_ratings(self):
         ratings = Ratings.query.all()
@@ -48,4 +48,4 @@ class ReviewRepository:
 
 
 # Singleton to be used in other modules
-review_repository_singleton = ReviewRepository()
+rating_repository_singleton = RatingRepository()
