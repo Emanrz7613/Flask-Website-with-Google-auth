@@ -7,6 +7,10 @@ class RatingRepository:
     def get_all_ratings(self):
         ratings = Ratings.query.all()
         return ratings
+    
+    def get_rating_by_id(self, rating_id):
+        single_rating = Ratings.query.get(rating_id)
+        return single_rating
 
     def get_ratings_by_prof_course(prof_first_name, prof_last_name, subject, course_num):
         professor = Professors.query.filter_by(first_name=prof_first_name, last_name=prof_last_name).first()
