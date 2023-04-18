@@ -1,0 +1,28 @@
+{% extends '_layout.html' %}
+
+{% block title %}UNCC Professor Rating | Create Professor Rating{% endblock %}
+
+{% block body %}
+<h1 class="mb-5">Create Professor Rating</h1>
+<p class="mb-3">Create a Professor Rating Below</p>
+<form action="/movies" method="post">
+  <div class="mb-3">
+    <label for="first_name" class="form-label">Professor Name</label>
+    <input type="text" name="first_name" id="first_name" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="course_num" class="form-label">Course Number</label>
+    <input type="text" name="course_num" id="course_num" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="rating" class="form-label">Rating</label>
+    <select name="rating" id="rating" class="form-select" required>
+      <option value="" disabled selected>Select Rating</option>
+      {% for num in range(1, 6) %}
+      <option value="{{ num }}">{{ num }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Professor Rating</button>
+</form>
+{% endblock %}
