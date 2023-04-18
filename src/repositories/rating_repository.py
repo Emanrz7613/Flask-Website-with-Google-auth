@@ -44,7 +44,7 @@ class RatingRepository:
     # Return the new rating object
         return new_rating
     
-    new_user = Users(first_name=idinfo['given_name'], last_name=idinfo['family_name'], email=idinfo['email'])
+    
 
     def get_reviews_by_class(self, class_name):
         #Abstract
