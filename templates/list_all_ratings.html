@@ -1,0 +1,27 @@
+{% extends '_layout.html' %}
+
+{% block title %}UNCC Professor Rating | All Ratings{% endblock %}
+{% block container_class %}bg-exclude{% endblock %}
+{% block body %}
+<h1 class="mb-5">All Ratings</h1>
+<p class="mb-3">See our list of professor ratings below</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Course Number</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- TODO - Render movies in a table with a link on the title to the individual movie page -->
+    {% for rating in ratings %}
+    <tr>
+      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.first_name }}</a></td>
+        <td>{{ rating.course_num }}</td>
+        <td>{{ rating.rating }}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+{% endblock %}

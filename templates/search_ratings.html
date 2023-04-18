@@ -1,0 +1,41 @@
+{% extends '_layout.html' %}
+
+{% block title %}UNCC Professor Ratings | Search Professor Ratings{% endblock %}
+
+{% block body %}
+<h1 class="mb-5">Search Professor Ratings</h1>
+<form action="/ratings/search" method="get" class="mb-5">
+  <label for="q" class="form-label">Search by first name</label>  
+  <div class="input-group">
+    <input type="text" name="q" id="q" class="form-control" autocomplete="off" required>
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </div>
+</form>
+<!-- If q is passed to the template, we did a search already -->
+{% if search_query != '' %}
+{% if rating|length != 0 %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Course Number</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rating in ratings %}
+      <tr>
+        <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.first_name }}</a></td>
+        <td>{{ rating.course_num }}</td>
+        <td>{{ rating.rating }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No ratings found</p>
+{% endif %}
+{% endif %}
+{% endblock %}
