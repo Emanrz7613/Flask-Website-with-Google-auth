@@ -32,6 +32,20 @@
             <a class="nav-link{% if search_active %} active{% endif %}" href="/ratings/search">Search</a>
           </li>
         </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if "email" in session %}
+              <li class="nav-item">
+                  <span class="navbar-text">Welcome, {{ session["email"].split('@')[0] }}!</span>
+              </li>
+              <li class="nav-item">
+                  <a class="btn btn-outline-primary" href="{{ url_for('logout') }}">Logout</a>
+              </li>
+          {% else %}
+              <li class="nav-item">
+                  <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login with Google</a>
+              </li>
+          {% endif %}
+        </ul>
       </div>
     </div>
   </nav>
