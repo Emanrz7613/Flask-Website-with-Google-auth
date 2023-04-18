@@ -32,7 +32,7 @@ def create_ratings_form():
 
 @app.post('/ratings')
 def create_rating():
-    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login
+    #TODO: Get more info from Eric about user_id and how works with google login
     user_id = request.form.get('user_id', '')
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')

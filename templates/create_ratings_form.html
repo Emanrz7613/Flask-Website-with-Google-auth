@@ -7,12 +7,24 @@
 <p class="mb-3">Create a Professor Rating Below</p>
 <form action="/movies" method="post">
   <div class="mb-3">
-    <label for="first_name" class="form-label">Professor Name</label>
+    <label for="first_name" class="form-label">Professor First Name</label>
     <input type="text" name="first_name" id="first_name" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="last_name" class="form-label">Professor Last Name</label>
+    <input type="text" name="last_name" id="last_name" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="subject" class="form-label">Subject</label>
+    <input type="text" name="subject" id="subject" class="form-control" autocomplete="off" required>
   </div>
   <div class="mb-3">
     <label for="course_num" class="form-label">Course Number</label>
     <input type="text" name="course_num" id="course_num" class="form-control" autocomplete="off" required>
+  </div>
+  <div class="mb-3">
+    <label for="semester" class="form-label">Semester</label>
+    <input type="text" name="semester" id="semester" class="form-control" autocomplete="off" required>
   </div>
   <div class="mb-3">
     <label for="rating" class="form-label">Rating</label>
@@ -22,6 +34,10 @@
       <option value="{{ num }}">{{ num }}</option>
       {% endfor %}
     </select>
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Description</label>
+    <input type="text" name="desc" id="desc" class="form-control" autocomplete="off" required>
   </div>
   <button type="submit" class="btn btn-primary">Create Professor Rating</button>
 </form>
