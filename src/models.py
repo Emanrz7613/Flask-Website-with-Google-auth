@@ -44,4 +44,4 @@ class Users(db.Model):
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    google_id = db.Column(db.String(255), nullable=False)

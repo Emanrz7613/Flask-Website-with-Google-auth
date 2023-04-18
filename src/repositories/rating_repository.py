@@ -26,8 +26,8 @@ class RatingRepository:
     def create_rating(user_id, first_name, last_name, subject, course_num, rating, semester, comments):
 
     # Get the professor_id
-        professor = Professors.query.filter_by(first_name=first_name, last_name=last_name).first()
-        professor_id = professor.professor_id
+        get_prof_id_by_name(first_name, last_name)
+        
     # Get the course_id
         course = Courses.query.filter_by(subject=subject, course_num=course_num).first()
         course_id = course.course_id
@@ -44,11 +44,30 @@ class RatingRepository:
     # Return the new rating object
         return new_rating
     
-    new_user = Users(first_name=idinfo['given_name'], last_name=idinfo['family_name'], email=idinfo['email'])
+    
 
     def get_reviews_by_class(self, class_name):
         #Abstract
         return
+
+    def get_prof_id_by_name(self, first_name, last_name):
+        professor = Professors.query.filter_by(first_name=first_name, last_name=last_name).first()
+        professor_id = professor.professor_id
+        return professor_id
+    
+    def get_course_id_by_subj_num(self, subject, course_num):
+        return
+
+    def get_user_by_email(self, email):
+        return Users.query.filter_by(email=email).first()
+    
+    def create_user(self, first_name, last_name, email, google_id):
+        new_user = Users(first_name=first_name, last_name=last_name, email=email, google_id=google_id)
+        db.session.add(new_user)
+        db.session.commit()
+        return new_user
+        
+
 
 
 # Singleton to be used in other modules
