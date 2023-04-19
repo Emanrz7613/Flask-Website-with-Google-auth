@@ -4,13 +4,14 @@ from src.repositories.rating_repository import *
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from src.models import *
+from src.repositories.rating_repository import rating_repository_singleton
 from authlib.integrations.flask_client import OAuth
 from functools import wraps
 
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if "google_id" not in session:
+        if "email" not in session:
             return unauthorized_error(None)
         return f(*args, **kwargs)
     return decorated_function
@@ -68,22 +69,28 @@ def get_single_rating(rating_id):
 @app.get('/ratings/new')
 @login_required
 def create_ratings_form():
-    return render_template('create_ratings_form.html')
+    first_name = [str(first_name).strip("(), '") for first_name in db.session.query(Professors.first_name).distinct().all()] # Retireve professors first names from the database    
+    last_name = [str(last_name).strip("(), '") for last_name in db.session.query(Professors.last_name).distinct().all()] # Retrieve professors last names from the database
+    semester = [str(semester).strip("(), '") for semester in db.session.query(Ratings.semester).distinct().all()] # Retrieve semesters from the database
+    course_subjects = [str(course_subjects).strip("(), '") for course_subjects in db.session.query(Courses.subject).distinct().all()] # Retrieve course subjects from the database
+    course_numbers = [str(course_numbers).strip("(), '") for course_numbers in db.session.query(Courses.course_num).distinct().all()]  # Retrieve course numbers from the database
+    return render_template('create_ratings_form.html', course_subjects=course_subjects, course_numbers=course_numbers,
+                           first_name=first_name, last_name=last_name, semester=semester)
 
 @app.post('/ratings')
 def create_rating():
-    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login
-    user_id = request.form.get('user_id', '')
+    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login    
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')
     subject = request.form.get('subject', '')
     course_num = request.form.get('course_num', '')
     rating = request.form.get('rating', 1, type=int)
-    semester = request.form.get('semeseter', '')
-    desc = request.form.get('desc', '', type=str)
+    semester = request.form.get('semester', '')
+    comment = request.form.get('comment', '')
+    email = session["email"]
     if rating < 1 or rating > 5 or semester == '' or subject == '' or course_num == '':
         abort(400)
-    created_rating = rating_repository_singleton.create_rating(user_id, first_name, last_name, subject, course_num, rating, semester, desc)
+    created_rating = rating_repository_singleton.create_rating(first_name, last_name, subject, course_num, rating, semester, comment, email)
     return redirect(f'/ratings/{created_rating.rating_id}')
 
 @app.get('/ratings/search')
@@ -96,7 +103,7 @@ def search_ratings():
 
 @app.route("/login")
 def login():
-    if "google_id" in session:
+    if "email" in session:
         return redirect(url_for("index"))
     return google.authorize_redirect(url_for("authorize", _external=True))
 
@@ -104,17 +111,24 @@ def login():
 def authorize():
     token = google.authorize_access_token()
     resp = google.get("userinfo")
-    user_info = resp.json()
-    session["google_id"] = user_info["id"]
-    session["email"] = user_info["email"]
-    session["name"] = user_info["name"]
-    flash(f"Logged in as {user_info['email']}", "success")
+    user_info = resp.json()    
+
+    # Check if user exists, otherwise create a new user
+    user = Users.query.filter_by(email=user_info['email']).first()
+    if not user:
+        user = rating_repository_singleton.create_user(first_name=user_info["given_name"],
+                                                       last_name=user_info["family_name"],
+                                                       email=user_info["email"])
+    
+    session["user_id"] = user.user_id
+    session["email"] = user.email
+    session["name"] = f"{user.first_name} {user.last_name}"
+    flash(f"Logged in as {user.email}", "success")
     return redirect('/')
 
 @app.route("/logout")
 @login_required
-def logout():
-    session.pop("google_id", None)
+def logout():    
     session.pop("email", None)
     session.pop('name', None)
     flash("You have been logged out.", "success")

@@ -84,11 +84,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `3155_final_project`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `3155_final_project`.`users` (
-  `user_id` INT NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
   `last_name` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,  
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
