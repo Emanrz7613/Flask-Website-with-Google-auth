@@ -38,11 +38,7 @@ CREATE TABLE IF NOT EXISTS `3155_final_project`.`professors` (
   `professor_id` INT NOT NULL AUTO_INCREMENT,  
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`professor_id`),
-  INDEX `department_id_idx` (`deparment_id` ASC) VISIBLE,
-  CONSTRAINT `department_id`
-    FOREIGN KEY (`deparment_id`)
-    REFERENCES `3155_final_project`.`departments` (`department_id`))
+  PRIMARY KEY (`professor_id`)  )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
