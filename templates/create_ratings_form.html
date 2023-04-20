@@ -7,20 +7,6 @@
 <p class="mb-3">Create a Professor Rating Below</p>
 <form action="/ratings" method="post">
   <div class="mb-3">
-<<<<<<< HEAD
-    <label for="first_name" class="form-label">Professor First Name</label>
-    <input type="text" name="first_name" id="first_name" class="form-control" autocomplete="off" required>
-  </div>
-  <div class="mb-3">
-    <label for="last_name" class="form-label">Professor Last Name</label>
-    <input type="text" name="last_name" id="last_name" class="form-control" autocomplete="off" required>
-  </div>
-  <div class="mb-3">
-    <label for="subject" class="form-label">Subject</label>
-    <input type="text" name="subject" id="subject" class="form-control" autocomplete="off" required>
-  </div>
-  <div class="mb-3">
-=======
     <label for="first_name" class="form-label">Professor first name</label>
     <input list="first_nameList" name="first_name" id="first_name" class="form-control search-select" autocomplete="off" required>
     <datalist id = "first_nameList">
@@ -57,7 +43,6 @@
     </datalist>
 </div>
 <div class="mb-3">
->>>>>>> Google_auth
     <label for="course_num" class="form-label">Course Number</label>
     <input list="courseNumList" name="course_num" id="course_num" class="form-control search-select" autocomplete="off" required>
     <datalist id="courseNumList">
@@ -74,10 +59,6 @@
   </div>
 </div>    
   <div class="mb-3">
-    <label for="semester" class="form-label">Semester</label>
-    <input type="text" name="semester" id="semester" class="form-control" autocomplete="off" required>
-  </div>
-  <div class="mb-3">
     <label for="rating" class="form-label">Rating</label>
     <select name="rating" id="rating" class="form-select" required>
       <option value="" disabled selected>Select Rating</option>
@@ -85,10 +66,6 @@
       <option value="{{ num }}">{{ num }}</option>
       {% endfor %}
     </select>
-  </div>
-  <div class="mb-3">
-    <label for="desc" class="form-label">Description</label>
-    <input type="text" name="desc" id="desc" class="form-control" autocomplete="off" required>
   </div>
   <button type="submit" class="btn btn-primary">Create Professor Rating</button>
 </form>
