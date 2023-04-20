@@ -3,7 +3,11 @@
 {% block title %}UNCC Professor Ratings | {{ rating.first_name }}{% endblock %}
 
 {% block body %}
-<h1>{{ rating.first_name }} - {{ rating.rating }}</h1>
-<h2>{{ rating.course_num }}</h2>
-
+<h4>Rating by User ID {{ rating.user_id }}</h4>
+<article>
+    <h1>Professor: {{ rating.first_name}} {{ rating.last_name }}</h1>
+    <h2>Course: {{ rating.subject }} {{ rating.course_num }}</h2>
+    <h2>Rating: {{ rating.rating }}/5</h2>
+    <p>Comments: {{ rating.comments }}</p>
+</article>
 {% endblock %}
