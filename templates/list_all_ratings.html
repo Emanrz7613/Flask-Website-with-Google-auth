@@ -8,18 +8,25 @@
 <table class="table">
   <thead>
     <tr>
-      <th>First Name</th>
+      <th>Rating ID</th>
+      <th>Professor's Name</th>
+      <th>Subject</th>
       <th>Course Number</th>
+      <th>Semester</th>
       <th>Rating</th>
+      <th>Comments</th>
     </tr>
   </thead>
   <tbody>
-    <!-- TODO - Render movies in a table with a link on the title to the individual movie page -->
-    {% for rating in ratings %}
+    {% for rating, first_name, last_name, subject, course_num in ratings %}
     <tr>
-      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.first_name }}</a></td>
-        <td>{{ rating.course_num }}</td>
-        <td>{{ rating.rating }}</td>
+      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
+        <td>{{ first_name }} {{ last_name }}</td>
+        <td>{{ subject }}</td>
+        <td>{{ course_num }}</td>
+        <td>{{ rating.semester }}</td>
+        <td>{{ rating.rating}} </td>
+        <td>{{ rating.comments }}</td>
     </tr>
 {% endfor %}
   </tbody>

@@ -4,7 +4,10 @@ from flask import session
 class RatingRepository:
 
     def get_all_ratings(self):
-        ratings = Ratings.query.all()
+        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.subject, Courses.course_num)\
+                       .join(Professors, Ratings.professor_id == Professors.professor_id)\
+                       .join(Courses, Ratings.course_id == Courses.course_id)\
+                       .all()
         return ratings
     
     def get_rating_by_id(self, rating_id):
@@ -65,7 +68,7 @@ class RatingRepository:
         course = Courses.query.filter_by(subject=subject, course_num=course_num).first()
         course_id = course.course_id
         return course_id
-        
+    
 
 
 
