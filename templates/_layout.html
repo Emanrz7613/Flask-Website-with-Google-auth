@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,15 +24,29 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link{% if list_movies_active %} active{% endif %}" href="/movies">All Ratings</a>
+            <a class="nav-link{% if list_movies_active %} active{% endif %}" href="/ratings">All Ratings</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link{% if create_rating_active %} active{% endif %}" href="/movies/new">Create Rating</a>
+            <a class="nav-link{% if create_rating_active %} active{% endif %}" href="/ratings/new">Create Rating</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link{% if search_active %} active{% endif %}" href="/movies/search">Search</a>
+            <a class="nav-link{% if search_active %} active{% endif %}" href="/ratings/search">Search</a>
           </li>
         </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if "email" in session %}
+              <li class="nav-item">
+                  <span class="navbar-text">Welcome, {{ session["name"] }}!  </span>
+              </li>
+              <li class="nav-item">
+                  <a class="btn btn-outline-primary" href="{{ url_for('logout') }}">Logout</a>
+              </li>
+          {% else %}
+              <li class="nav-item">
+                  <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login with Google</a>
+              </li>
+          {% endif %}
+      </ul>
       </div>
     </div>
   </nav>

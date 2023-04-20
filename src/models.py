@@ -3,15 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 class Professors(db.Model):
-    professor_id = db.Column(db.Integer, primary_key=True)
-    department_id = db.Column(db.Integer, db.ForeignKey('departments.department_id'), nullable=False)
+    professor_id = db.Column(db.Integer, primary_key=True)    
     first_name = db.Column(db.String(255), nullable=False)
-    last_name = db.Column(db.String(255), nullable=False)
-    
+    last_name = db.Column(db.String(255), nullable=False)   
 
-class Departments(db.Model):
-    department_id = db.Column(db.Integer, primary_key=True)
-    dept_name = db.Column(db.String(50), nullable=False)
+
 
 class Professor_course(db.Model):
     professor_id = db.Column(db.Integer, db.ForeignKey('professors.professor_id'), primary_key=True,  nullable=False)
@@ -21,7 +17,7 @@ class Courses(db.Model):
     course_id = db.Column(db.Integer, primary_key=True, nullable=False)
     subject = db.Column(db.String(4), nullable = False)
     course_num = db.Column(db.String(4), nullable=False)
-    course_title = db.Column(db.String(50), nullable=False)
+    
 
 @staticmethod
 def get_course_id(subject, course_num):
@@ -44,4 +40,4 @@ class Users(db.Model):
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), nullable=False)
-    password = db.Column(db.String(255), nullable=False)
+    

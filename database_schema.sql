@@ -23,39 +23,22 @@ USE `3155_final_project` ;
 CREATE TABLE IF NOT EXISTS `3155_final_project`.`courses` (
   `course_id` INT NOT NULL AUTO_INCREMENT,
   `subject` CHAR(4) NOT NULL,
-  `course_num` CHAR(4) NOT NULL,
-  `course_title` VARCHAR(50) NOT NULL,
+  `course_num` CHAR(4) NOT NULL,  
   PRIMARY KEY (`course_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
--- -----------------------------------------------------
--- Table `3155_final_project`.`departments`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3155_final_project`.`departments` (
-  `department_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`department_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
 
 -- -----------------------------------------------------
 -- Table `3155_final_project`.`professors`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `3155_final_project`.`professors` (
-  `professor_id` INT NOT NULL AUTO_INCREMENT,
-  `deparment_id` INT NOT NULL,
+  `professor_id` INT NOT NULL AUTO_INCREMENT,  
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`professor_id`),
-  INDEX `department_id_idx` (`deparment_id` ASC) VISIBLE,
-  CONSTRAINT `department_id`
-    FOREIGN KEY (`deparment_id`)
-    REFERENCES `3155_final_project`.`departments` (`department_id`))
+  PRIMARY KEY (`professor_id`)  )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -84,11 +67,10 @@ COLLATE = utf8mb4_0900_ai_ci;
 -- Table `3155_final_project`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `3155_final_project`.`users` (
-  `user_id` INT NOT NULL,
+  `user_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(255) NOT NULL,
   `last_name` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,  
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
 ENGINE = InnoDB

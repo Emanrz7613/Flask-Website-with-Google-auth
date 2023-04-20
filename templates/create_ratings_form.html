@@ -5,8 +5,9 @@
 {% block body %}
 <h1 class="mb-5">Create Professor Rating</h1>
 <p class="mb-3">Create a Professor Rating Below</p>
-<form action="/movies" method="post">
+<form action="/ratings" method="post">
   <div class="mb-3">
+<<<<<<< HEAD
     <label for="first_name" class="form-label">Professor First Name</label>
     <input type="text" name="first_name" id="first_name" class="form-control" autocomplete="off" required>
   </div>
@@ -19,9 +20,59 @@
     <input type="text" name="subject" id="subject" class="form-control" autocomplete="off" required>
   </div>
   <div class="mb-3">
-    <label for="course_num" class="form-label">Course Number</label>
-    <input type="text" name="course_num" id="course_num" class="form-control" autocomplete="off" required>
+=======
+    <label for="first_name" class="form-label">Professor first name</label>
+    <input list="first_nameList" name="first_name" id="first_name" class="form-control search-select" autocomplete="off" required>
+    <datalist id = "first_nameList">
+      {% for first_name in first_name %}
+        <option value="{{ first_name }}">{{ first_name }}</option>
+        {% endfor %}
+    </datalist>
   </div>
+  <div class="mb-3">
+    <label for="last_name" class="form-label">Professor last name</label>
+    <input list="last_nameList" name="last_name" id="last_name" class="form-control search-select" autocomplete="off" required>
+    <datalist id = "last_nameList">
+      {% for last_name in last_name %}
+        <option value="{{ last_name }}">{{ last_name }}</option>
+        {% endfor %}
+    </datalist>
+  </div>
+  <div class="mb-3">
+    <label for="semester" class="form-label">Semester</label>
+    <input list="semesterList" name="semester" id="semester" class="form-control search-select" autocomplete="off" required>
+    <datalist id="semesterList">
+        {% for semester in semester %}
+        <option value="{{ semester }}">{{ semester }}</option>
+        {% endfor %}
+    </datalist>
+</div>
+  <div class="mb-3">
+    <label for="subject" class="form-label">Course Subject</label>
+    <input list="subjectList" name="subject" id="subject" class="form-control search-select" autocomplete="off" required>
+    <datalist id="subjectList">
+        {% for subject in course_subjects %}
+        <option value="{{ subject }}">{{ subject }}</option>
+        {% endfor %}
+    </datalist>
+</div>
+<div class="mb-3">
+>>>>>>> Google_auth
+    <label for="course_num" class="form-label">Course Number</label>
+    <input list="courseNumList" name="course_num" id="course_num" class="form-control search-select" autocomplete="off" required>
+    <datalist id="courseNumList">
+        {% for num in course_numbers %}
+        <option value="{{ num }}">{{ num }}</option>
+        {% endfor %}
+    </datalist>
+</div>
+<div class="mb-3">
+  <label for="comment" class="form-label">Comment</label>
+  <textarea name="comment" id="comment" class="form-control" rows="3" maxlength="255" required></textarea>
+  <div id="descHelp" class="form-text">
+      Max length: 255 characters.
+  </div>
+</div>    
   <div class="mb-3">
     <label for="semester" class="form-label">Semester</label>
     <input type="text" name="semester" id="semester" class="form-control" autocomplete="off" required>
