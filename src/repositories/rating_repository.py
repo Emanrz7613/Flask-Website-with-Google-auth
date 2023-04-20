@@ -29,11 +29,6 @@ class RatingRepository:
         db.session.add(new_rating)
         db.session.commit()        
     # Return the new rating object
-<<<<<<< HEAD
-        return new_rating
-    
-    
-=======
         return new_rating    
 
     def get_prof_id_by_name(self, first_name, last_name):
@@ -71,7 +66,6 @@ class RatingRepository:
         course_id = course.course_id
         return course_id
         
->>>>>>> Google_auth
 
 
 
