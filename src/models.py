@@ -5,12 +5,9 @@ db = SQLAlchemy()
 class Professors(db.Model):
     professor_id = db.Column(db.Integer, primary_key=True)    
     first_name = db.Column(db.String(255), nullable=False)
-    last_name = db.Column(db.String(255), nullable=False)
-    
+    last_name = db.Column(db.String(255), nullable=False)   
 
-class Departments(db.Model):
-    department_id = db.Column(db.Integer, primary_key=True)
-    dept_name = db.Column(db.String(50), nullable=False)
+
 
 class Professor_course(db.Model):
     professor_id = db.Column(db.Integer, db.ForeignKey('professors.professor_id'), primary_key=True,  nullable=False)
