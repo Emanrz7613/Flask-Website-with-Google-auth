@@ -5,17 +5,17 @@
 {% block body %}
 <h1 class="mb-5">All Ratings</h1>
 <p class="mb-3">See our list of professor ratings below</p>
-<table class="table">
-  <thead>
+<table class="table table-striped">
+  <thead class="bg-success text-white">
     <tr>
-      <th>Rating ID</th>
-      <th> User ID</th>
-      <th>Professor's Name</th>
-      <th>Subject</th>
-      <th>Course Number</th>
-      <th>Semester</th>
-      <th>Rating</th>
-      <th>Comments</th>
+      <th class="text-uppercase">Rating ID</th>
+      <th class="text-uppercase"> User ID</th>
+      <th class="text-uppercase">Professor's Name</th>
+      <th class="text-uppercase">Subject</th>
+      <th class="text-uppercase">Course Number</th>
+      <th class="text-uppercase">Semester</th>
+      <th class="text-uppercase">Rating</th>
+      <th class="text-uppercase">Comments</th>
     </tr>
   </thead>
   <tbody>
@@ -27,10 +27,15 @@
         <td>{{ subject }}</td>
         <td>{{ course_num }}</td>
         <td>{{ rating.semester }}</td>
-        <td>{{ rating.rating}} </td>
+        <td class="text-success">{{ rating.rating}} </td>
         <td>{{ rating.comments }}</td>
     </tr>
 {% endfor %}
   </tbody>
 </table>
 {% endblock %}
+
+
+
+
+
