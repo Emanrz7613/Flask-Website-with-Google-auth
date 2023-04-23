@@ -14,12 +14,12 @@
     </tr>
   </thead>
   <tbody>
-    <!-- Render all ratings in a table -->
-    {% for i in range(size) %}
+    <!-- TODO - Render movies in a table with a link on the title to the individual movie page -->
+    {% for rating in ratings %}
     <tr>
-      <td>{{ professors[i] }}</td>
-        <td>{{ courses[i] }}</td>
-        <td>{{ ratings[i] }}</td>
+      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.first_name }}</a></td>
+        <td>{{ rating.course_num }}</td>
+        <td>{{ rating.rating }}</td>
     </tr>
 {% endfor %}
   </tbody>
