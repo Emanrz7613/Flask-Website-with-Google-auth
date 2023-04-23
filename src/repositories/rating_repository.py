@@ -11,7 +11,7 @@ class RatingRepository:
         return ratings
     
     def search_ratings(self, q):
-        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.comments)\
+        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\
                         .join(Professors, Ratings.professor_id == Professors.professor_id)\
                         .join(Courses, Ratings.course_id == Courses.course_id)\
                         .filter(Professors.first_name == q)\
