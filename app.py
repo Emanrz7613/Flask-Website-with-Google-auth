@@ -95,9 +95,21 @@ def create_rating():
 @app.get('/ratings/search')
 def search_ratings():
     found_ratings = []
-    q = request.args.get('q', '')
+    q = request.args.get('q-first-name', '')
     if q != '':
-        found_ratings = rating_repository_singleton.search_ratings(q)
+        found_ratings = rating_repository_singleton.search_ratings_by_first_name(q)
+    else:
+        q = request.args.get('q-last-name', '')
+        if q != '':
+            found_ratings = rating_repository_singleton.search_ratings_by_last_name(q)
+        else:
+            q = request.args.get('q-subject', '')
+            if q != '':
+                found_ratings = rating_repository_singleton.search_ratings_by_subject(q)
+            else:
+                q = request.args.get('q-course-num', '')
+                if q != '':
+                    found_ratings = rating_repository_singleton.search_ratings_by_course_num(q)
     size = len(found_ratings)
     return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q, size=size)
 

@@ -10,11 +10,35 @@ class RatingRepository:
                        .all()
         return ratings
     
-    def search_ratings(self, q):
+    def search_ratings_by_first_name(self, q):
         ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\
                         .join(Professors, Ratings.professor_id == Professors.professor_id)\
                         .join(Courses, Ratings.course_id == Courses.course_id)\
                         .filter(Professors.first_name == q)\
+                        .all()
+        return ratings
+    
+    def search_ratings_by_last_name(self, q):
+        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\
+                        .join(Professors, Ratings.professor_id == Professors.professor_id)\
+                        .join(Courses, Ratings.course_id == Courses.course_id)\
+                        .filter(Professors.last_name == q)\
+                        .all()
+        return ratings
+    
+    def search_ratings_by_subject(self, q):
+        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\
+                        .join(Professors, Ratings.professor_id == Professors.professor_id)\
+                        .join(Courses, Ratings.course_id == Courses.course_id)\
+                        .filter(Courses.subject == q)\
+                        .all()
+        return ratings
+    
+    def search_ratings_by_course_num(self, q):
+        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\
+                        .join(Professors, Ratings.professor_id == Professors.professor_id)\
+                        .join(Courses, Ratings.course_id == Courses.course_id)\
+                        .filter(Courses.course_num == q)\
                         .all()
         return ratings
     
