@@ -19,17 +19,27 @@
 <table class="table">
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Course Number</th>
-      <th>Rating</th>
+      <th class="text-uppercase">Rating ID</th>
+      <th class="text-uppercase"> User ID</th>
+      <th class="text-uppercase">Professor's Name</th>
+      <th class="text-uppercase">Subject</th>
+      <th class="text-uppercase">Course Number</th>
+      <th class="text-uppercase">Semester</th>
+      <th class="text-uppercase">Rating</th>
+      <th class="text-uppercase">Comments</th>
     </tr>
   </thead>
   <tbody>
     {% for rating in ratings %}
       <tr>
-        <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.first_name }}</a></td>
+        <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
+        <td>{{ rating.user_id }}</td>
+        <td>{{ rating.first_name }} {{ rating.last_name }}</td>
+        <td>{{ rating.subject }}</td>
         <td>{{ rating.course_num }}</td>
-        <td>{{ rating.rating }}</td>
+        <td>{{ rating.semester }}</td>
+        <td class="text-success">{{ rating.rating}} </td>
+        <td>{{ rating.comments }}</td>
       </tr>
     {% endfor %}
   </tbody>
