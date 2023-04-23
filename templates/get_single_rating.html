@@ -1,9 +1,9 @@
 {% extends '_layout.html' %}
 
-{% block title %}UNCC Professor Ratings | {{ professor.first_name }}{% endblock %}
+{% block title %}UNCC Professor Ratings | {{ rating.first_name }}{% endblock %}
 
 {% block body %}
-<h1>{{ professor.first_name }} - {{ rating.rating }}</h1>
+<h1>{{ rating.first_name }} - {{ rating.rating }}</h1>
 <h2>{{ rating.course_num }}</h2>
 
 {% endblock %}

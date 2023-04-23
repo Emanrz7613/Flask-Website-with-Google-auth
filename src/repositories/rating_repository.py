@@ -10,11 +10,6 @@ class RatingRepository:
     def get_rating_by_id(self, rating_id):
         single_rating = Ratings.query.get(rating_id)
         return single_rating
-    
-    def get_prof_by_rating_id(self, rating_id):
-        rating = Ratings.query.get(rating_id)
-        professor = Professors.query.get(rating.professor_id)
-        return professor
 
     def get_ratings_by_prof_course(self,prof_id, course_id):
         ratings = Ratings.query.filter_by(prof_id=prof_id, course_id=course_id).all()
@@ -45,10 +40,6 @@ class RatingRepository:
             db.session.add(new_professor)
             db.session.commit()
             return new_professor.professor_id
-    
-    def get_prof_first_name_by_id(self, prof_id):
-        prof = Professors.query.get(prof_id)
-        return prof.first_name
     
     def get_course_id_by_subj_num(self, subject, course_num):
         course = Courses.query.filter_by(subject=subject, course_num=course_num).first()
