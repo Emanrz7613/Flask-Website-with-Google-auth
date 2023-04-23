@@ -2,8 +2,22 @@
 
 {% block title %}UNCC Professor Ratings | {{ rating.first_name }}{% endblock %}
 
-{% block body %}
-<h1>{{ rating.first_name }} - {{ rating.rating }}</h1>
-<h2>{{ rating.course_num }}</h2>
+{% block container_class %}bg-exclude{% endblock %}
 
+{% block body %}
+<div class="container">
+  <div class="card bg-light mb-3" style="max-width: 800px;">
+    <div class="card-header bg-success text-white">Rating Details</div>
+    <div class="card-body">
+      <h5 class="card-title">Professor: {{ rating.first_name}} {{ rating.last_name }}</h5>
+      <p class="card-text"><strong>Course:</strong> {{ rating.subject }} {{ rating.course_num }}</p>
+      <p class="card-text"><strong>Rating:</strong> {{ rating.rating }}/5</p>
+      <p class="card-text"><strong>Comments:</strong> {{ rating.comments }}</p>
+      <p class="card-text"><strong>Submitted by user ID:</strong> {{ rating.user_id }}</p>
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+
+

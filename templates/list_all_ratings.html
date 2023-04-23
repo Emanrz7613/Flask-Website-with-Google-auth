@@ -5,23 +5,37 @@
 {% block body %}
 <h1 class="mb-5">All Ratings</h1>
 <p class="mb-3">See our list of professor ratings below</p>
-<table class="table">
-  <thead>
+<table class="table table-striped">
+  <thead class="bg-success text-white">
     <tr>
-      <th>First Name</th>
-      <th>Course Number</th>
-      <th>Rating</th>
+      <th class="text-uppercase">Rating ID</th>
+      <th class="text-uppercase"> User ID</th>
+      <th class="text-uppercase">Professor's Name</th>
+      <th class="text-uppercase">Subject</th>
+      <th class="text-uppercase">Course Number</th>
+      <th class="text-uppercase">Semester</th>
+      <th class="text-uppercase">Rating</th>
+      <th class="text-uppercase">Comments</th>
     </tr>
   </thead>
   <tbody>
-    <!-- TODO - Render movies in a table with a link on the title to the individual movie page -->
-    {% for rating in ratings %}
+    {% for rating, first_name, last_name, subject, course_num in ratings %}
     <tr>
-      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.first_name }}</a></td>
-        <td>{{ rating.course_num }}</td>
-        <td>{{ rating.rating }}</td>
+      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
+        <td>{{ rating.user_id }}</td>
+        <td>{{ first_name }} {{ last_name }}</td>
+        <td>{{ subject }}</td>
+        <td>{{ course_num }}</td>
+        <td>{{ rating.semester }}</td>
+        <td class="text-success">{{ rating.rating}} </td>
+        <td>{{ rating.comments }}</td>
     </tr>
 {% endfor %}
   </tbody>
 </table>
 {% endblock %}
+
+
+
+
+
