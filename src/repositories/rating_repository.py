@@ -15,6 +15,11 @@ class RatingRepository:
         rating = Ratings.query.get(rating_id)
         professor = Professors.query.get(rating.professor_id)
         return professor
+    
+    def get_course_by_rating_id(self, rating_id):
+        rating = Ratings.query.get(rating_id)
+        course = Courses.query.get(rating.course_id)
+        return course
 
     def get_ratings_by_prof_course(self,prof_id, course_id):
         ratings = Ratings.query.filter_by(prof_id=prof_id, course_id=course_id).all()

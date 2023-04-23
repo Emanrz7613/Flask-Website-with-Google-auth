@@ -59,13 +59,26 @@ def index():
 @app.get('/ratings')
 def list_all_ratings():
     all_ratings = rating_repository_singleton.get_all_ratings()
-    return render_template('list_all_ratings.html', list_ratings_active=True, ratings=all_ratings)
+    ratings = []
+    professors = []
+    courses = []
+    for rating in all_ratings:
+        ratings.append(rating.rating)
+        professors.append(rating_repository_singleton.get_prof_by_rating_id(rating.rating_id).first_name)
+        courses.append(rating_repository_singleton.get_course_by_rating_id(rating.rating_id).course_num)
+    
+    size = len(ratings)
+    print('test', flush=True)
+    print(size, flush=True)
+    print(len(professors), flush=True)
+    return render_template('list_all_ratings.html', list_ratings_active=True, ratings=ratings, professors=professors, courses=courses, size=size)
 
 @app.get('/ratings/<int:rating_id>')
 def get_single_rating(rating_id):
     single_rating = rating_repository_singleton.get_rating_by_id(rating_id)
     prof = rating_repository_singleton.get_prof_by_rating_id(rating_id)
-    return render_template('get_single_rating.html', rating=single_rating, professor=prof)
+    course = rating_repository_singleton.get_course_by_rating_id(rating_id)
+    return render_template('get_single_rating.html', rating=single_rating, professor=prof, course=course)
 
 @app.get('/ratings/new')
 @login_required
