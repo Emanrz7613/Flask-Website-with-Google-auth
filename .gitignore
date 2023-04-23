@@ -4,3 +4,4 @@ __pycache__/
 **/.DS_Store
 .DS_Store
 *.pyc
+src/__pycache__/models.cpython-311.pyc
