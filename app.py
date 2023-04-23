@@ -78,8 +78,7 @@ def create_ratings_form():
                            first_name=first_name, last_name=last_name, semester=semester)
 
 @app.post('/ratings')
-def create_rating():
-    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login    
+def create_rating():   
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')
     subject = request.form.get('subject', '')
@@ -99,7 +98,8 @@ def search_ratings():
     q = request.args.get('q', '')
     if q != '':
         found_ratings = rating_repository_singleton.search_ratings(q)
-    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q)
+    size = len(found_ratings)
+    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q, size=size)
 
 @app.route("/login")
 def login():
