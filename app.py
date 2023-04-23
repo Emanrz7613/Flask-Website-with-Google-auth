@@ -47,7 +47,7 @@ def load_user(user_id):
     return Users.query.get(int(user_id))
 
 app.config['SQLALCHEMY_DATABASE_URI']=\
-    'mysql://root:PASSWORD@localhost:3306/3155_final_project?charset=utf8mb4' # REMOVE PASSWORD BEFORE MAKING A COMMIT
+    'mysql://root:PASSWORD@localhost:3306/3155_final_project?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 db.init_app(app)
@@ -64,7 +64,8 @@ def list_all_ratings():
 @app.get('/ratings/<int:rating_id>')
 def get_single_rating(rating_id):
     single_rating = rating_repository_singleton.get_rating_by_id(rating_id)
-    return render_template('get_single_rating.html', rating=single_rating)
+    prof = rating_repository_singleton.get_prof_by_rating_id(rating_id)
+    return render_template('get_single_rating.html', rating=single_rating, professor=prof)
 
 @app.get('/ratings/new')
 @login_required
@@ -78,8 +79,7 @@ def create_ratings_form():
                            first_name=first_name, last_name=last_name, semester=semester)
 
 @app.post('/ratings')
-def create_rating():
-    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login    
+def create_rating():  
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')
     subject = request.form.get('subject', '')
