@@ -68,6 +68,9 @@ def list_all_ratings():
         courses.append(rating_repository_singleton.get_course_by_rating_id(rating.rating_id).course_num)
     
     size = len(ratings)
+    print('test', flush=True)
+    print(size, flush=True)
+    print(len(professors), flush=True)
     return render_template('list_all_ratings.html', list_ratings_active=True, ratings=ratings, professors=professors, courses=courses, size=size)
 
 @app.get('/ratings/<int:rating_id>')
