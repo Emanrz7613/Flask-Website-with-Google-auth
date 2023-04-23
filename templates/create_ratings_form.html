@@ -26,7 +26,7 @@
   </div>
   <div class="mb-3">
     <label for="semester" class="form-label">Semester</label>
-    <input list="semesterList" name="semester" id="semester" class="form-control search-select" autocomplete="off" required>
+    <input list="semesterList" name="semester" id="semester" class="form-control search-select" autocomplete="off" placeholder="Example: Summer 2023" required maxlength="11">
     <datalist id="semesterList">
         {% for semester in semester %}
         <option value="{{ semester }}">{{ semester }}</option>
@@ -35,7 +35,7 @@
 </div>
   <div class="mb-3">
     <label for="subject" class="form-label">Course Subject</label>
-    <input list="subjectList" name="subject" id="subject" class="form-control search-select" autocomplete="off" required>
+    <input list="subjectList" name="subject" id="subject" class="form-control search-select" autocomplete="off" placeholder="Example: ITSC" required maxlength="4">
     <datalist id="subjectList">
         {% for subject in course_subjects %}
         <option value="{{ subject }}">{{ subject }}</option>
@@ -44,12 +44,12 @@
 </div>
 <div class="mb-3">
     <label for="course_num" class="form-label">Course Number</label>
-    <input list="courseNumList" name="course_num" id="course_num" class="form-control search-select" autocomplete="off" required>
+    <input list="courseNumList" name="course_num" id="course_num" class="form-control search-select" autocomplete="off" placeholder="Example: 3155" required maxlength="4">
     <datalist id="courseNumList">
         {% for num in course_numbers %}
         <option value="{{ num }}">{{ num }}</option>
         {% endfor %}
-    </datalist>
+    </datalist>    
 </div>
 <div class="mb-3">
   <label for="comment" class="form-label">Comment</label>
