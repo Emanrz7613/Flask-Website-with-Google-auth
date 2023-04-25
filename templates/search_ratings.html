@@ -36,37 +36,46 @@
 </form>
 <!-- If q is passed to the template, we did a search already -->
 {% if search_query != '' %}
-{% if size != 0 %}
-<table class="table">
-  <thead>
-    <tr>
-      <th class="text-uppercase">Rating ID</th>
-      <th class="text-uppercase"> User ID</th>
-      <th class="text-uppercase">Professor's Name</th>
-      <th class="text-uppercase">Subject</th>
-      <th class="text-uppercase">Course Number</th>
-      <th class="text-uppercase">Semester</th>
-      <th class="text-uppercase">Rating</th>
-      <th class="text-uppercase">Comments</th>
-    </tr>
-  </thead>
-  <tbody>
+  {% if ratings|length > 0 %}
+    {% set total_rating = 0 %}
     {% for rating in ratings %}
-      <tr>
-        <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
-        <td>{{ rating.user_id }}</td>
-        <td>{{ rating.first_name }} {{ rating.last_name }}</td>
-        <td>{{ rating.subject }}</td>
-        <td>{{ rating.course_num }}</td>
-        <td>{{ rating.semester }}</td>
-        <td class="text-success">{{ rating.rating}} </td>
-        <td>{{ rating.comments }}</td>
-      </tr>
+      {% set total_rating = total_rating + rating.rating %}
     {% endfor %}
-  </tbody>
-</table>
-{% else %}
-<p>No ratings found</p>
+    {% set avg_rating = total_rating / ratings|length %}
+
+    <p>Average rating: {{ avg_rating }}</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-uppercase">Rating ID</th>
+          <th class="text-uppercase"> User ID</th>
+          <th class="text-uppercase">Professor's Name</th>
+          <th class="text-uppercase">Subject</th>
+          <th class="text-uppercase">Course Number</th>
+          <th class="text-uppercase">Semester</th>
+          <th class="text-uppercase">Rating</th>
+          <th class="text-uppercase">Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rating in ratings %}
+          <tr>
+            <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
+            <td>{{ rating.user_id }}</td>
+            <td>{{ rating.first_name }} {{ rating.last_name }}</td>
+            <td>{{ rating.subject }}</td>
+            <td>{{ rating.course_num }}</td>
+            <td>{{ rating.semester }}</td>
+            <td class="text-success">{{ rating.rating}} </td>
+            <td>{{ rating.comments }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No ratings found for your search query.</p>
+  {% endif %}
 {% endif %}
-{% endif %}
+
 {% endblock %}
