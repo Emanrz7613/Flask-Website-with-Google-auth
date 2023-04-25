@@ -49,7 +49,14 @@ class RatingRepository:
                         .filter(Ratings.rating_id == rating_id)\
                         .first()
         return single_rating
+    
+    """ Get the prof_id and course_id parameters by calling the appropriate functions
+        prof_id = self.get_prof_id_by_name(first_name, last_name), pass in the first and last name from the search form
+        course_id = self.get_course_id_by_subj_num(subject, course_num), pass in the subject and course_num from the search form
+        once you have the prof_id and course_id you can call the get_ratings_by_prof_course(self,prof_id, course_id) function to retrieve the ratings that match
+        the professor and course. You can pass in the search results into the get_avg_rating(self, results)
 
+    """
     def get_ratings_by_prof_course(self,prof_id, course_id):
         ratings = Ratings.query.filter_by(prof_id=prof_id, course_id=course_id).all()
         return ratings        
@@ -105,6 +112,18 @@ class RatingRepository:
         course_id = course.course_id
         return course_id
     
+    # takes ratings search results as parameter
+    def get_avg_rating(self, results):
+        total_rating = 0
+        total_records = len(results)
+        if total_records == 0:
+            return 0
+
+        for rating in results:
+            total_rating += rating.Ratings.rating
+
+        average = total_rating / total_records
+        return average    
 
     
 
