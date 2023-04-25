@@ -8,31 +8,21 @@
   <label for="q-first-name" class="form-label">Search by first name</label>  
   <div class="input-group">
     <input type="text" name="q-first-name" id="q-first-name" class="form-control" autocomplete="off">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </div>
   </div>
   <label for="q-last-name" class="form-label">Search by last name</label>  
   <div class="input-group">
     <input type="text" name="q-last-name" id="q-last-name" class="form-control" autocomplete="off">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </div>
   </div>
   <label for="q-subject" class="form-label">Search by subject code (ex. ITSC)</label>  
   <div class="input-group">
     <input type="text" name="q-subject" id="q-subject" class="form-control" autocomplete="off">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </div>
   </div>
   <label for="q-course-num" class="form-label">Search by course number (ex. 3155)</label>  
   <div class="input-group">
     <input type="text" name="q-course-num" id="q-course-num" class="form-control" autocomplete="off">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-primary">Search</button>
-    </div>
   </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Search</button>
 </form>
 <!-- If q is passed to the template, we did a search already -->
 {% if search_query != '' %}
