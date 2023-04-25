@@ -26,11 +26,8 @@
 </form>
 <!-- If q is passed to the template, we did a search already -->
 {% if search_query != '' %}
-  {% if ratings|length > 0 %}
-    {% set total_rating = 0 %}
-    {% for rating in ratings %}
-      {% set total_rating = total_rating + rating.rating %}
-    {% endfor %}
+  {% if ratings|length > 0 %}  
+    
     
 
     <p>Average rating: {{ avg_rating }}</p>
