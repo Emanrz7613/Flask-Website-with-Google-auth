@@ -111,7 +111,8 @@ def search_ratings():
                 if q != '':
                     found_ratings = rating_repository_singleton.search_ratings_by_course_num(q)
     size = len(found_ratings)
-    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q, size=size)
+    avg_rating = rating_repository_singleton.get_avg_rating(found_ratings)
+    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q, avg_rating=avg_rating, size=size)
 
 @app.route("/login")
 def login():

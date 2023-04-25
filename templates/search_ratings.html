@@ -31,7 +31,7 @@
     {% for rating in ratings %}
       {% set total_rating = total_rating + rating.rating %}
     {% endfor %}
-    {% set avg_rating = total_rating / ratings|length %}
+    
 
     <p>Average rating: {{ avg_rating }}</p>
 
