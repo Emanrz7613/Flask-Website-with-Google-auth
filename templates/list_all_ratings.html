@@ -2,10 +2,25 @@
 
 {% block title %}UNCC Professor Rating | All Ratings{% endblock %}
 {% block container_class %}bg-exclude{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready( function () {
+      $('#ratings-table').DataTable();
+    });
+  </script>
+{% endblock %}
+
 {% block body %}
 <h1 class="mb-5">All Ratings</h1>
 <p class="mb-3">See our list of professor ratings below</p>
+
+<table id="ratings-table" class="table table-striped">
+
 <table class="table table-striped">
+
   <thead class="bg-success text-white">
     <tr>
       <th class="text-uppercase">Rating ID</th>
@@ -30,12 +45,8 @@
         <td class="text-success">{{ rating.rating}} </td>
         <td>{{ rating.comments }}</td>
     </tr>
-{% endfor %}
+    {% endfor %}
   </tbody>
 </table>
 {% endblock %}
-
-
-
-
 
