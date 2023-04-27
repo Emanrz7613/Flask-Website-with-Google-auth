@@ -10,20 +10,26 @@ class RatingRepository:
                        .all()
         return ratings
     
-    #def search_ratings(self, first_name, last_name, subject, course_num):
-        #ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.subject, Courses.course_num)\
-                       #.join(Professors, Ratings.professor_id == Professors.professor_id)\
-                       #.join(Courses, Ratings.course_id == Courses.course_id)\
-                       #.all()
-        #if (first_name != ''):
-            #ratings.filter(Professors.first_name == first_name)
-        #if(last_name != ''):
-            #ratings.filter(Professors.last_name == last_name)
-        #if(subject != ''):
-            #ratings.filter(Courses.subject == subject)
-        #if(course_num != ''):
-            #ratings.filter(Courses.course_num == course_num)
-        #return ratings
+    def search_ratings(self, first_name, last_name, subject, course_num):
+        found_ratings = []
+        ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.subject, Courses.course_num, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\
+                       .join(Professors, Ratings.professor_id == Professors.professor_id)\
+                       .join(Courses, Ratings.course_id == Courses.course_id)\
+                       .all()
+        for rating in ratings:
+            ident = rating[0]
+            query = [ident, first_name, last_name, subject, course_num]
+            if first_name == '':
+                query[1] = rating[1]
+            if last_name == '':
+                query[2] = rating[2]
+            if subject == '':
+                query[3] = rating[3]
+            if course_num == '':
+                query[4] = rating[4]
+            if rating[1] == query[1] and rating[2] == query[2] and rating[3] == query[3] and rating[4] == query[4]:
+                found_ratings.append(rating)
+        return found_ratings
     
     def search_ratings_by_first_name(self, q):
         ratings = db.session.query(Ratings, Professors.first_name, Professors.last_name, Courses.course_num, Courses.subject, Ratings.rating_id, Ratings.rating, Ratings.user_id, Ratings.semester, Ratings.comments)\

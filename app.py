@@ -95,24 +95,14 @@ def create_rating():
 @app.get('/ratings/search')
 def search_ratings():
     found_ratings = []
-    q = request.args.get('q-first-name', '')
-    if q != '':
-        found_ratings = rating_repository_singleton.search_ratings_by_first_name(q)
-    else:
-        q = request.args.get('q-last-name', '')
-        if q != '':
-            found_ratings = rating_repository_singleton.search_ratings_by_last_name(q)
-        else:
-            q = request.args.get('q-subject', '')
-            if q != '':
-                found_ratings = rating_repository_singleton.search_ratings_by_subject(q)
-            else:
-                q = request.args.get('q-course-num', '')
-                if q != '':
-                    found_ratings = rating_repository_singleton.search_ratings_by_course_num(q)
+    first_name = request.args.get('q-first-name', '')
+    last_name = request.args.get('q-last-name', '')
+    subject = request.args.get('q-subject', '')
+    course_num = request.args.get('q-course-num', '')
+    found_ratings = rating_repository_singleton.search_ratings(first_name, last_name, subject, course_num)
     size = len(found_ratings)
     avg_rating = rating_repository_singleton.get_avg_rating(found_ratings)
-    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q, avg_rating=avg_rating, size=size)
+    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=True, avg_rating=avg_rating, size=size)
 
 @app.route("/login")
 def login():
