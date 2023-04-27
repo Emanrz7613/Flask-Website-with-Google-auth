@@ -18,6 +18,18 @@
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <title>{% block title %}{% endblock %}</title>
   <style>
+    .user-greeting {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+    .custom-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+  }
     body {
       background-color: #f6d653;
     }
@@ -53,18 +65,18 @@
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if "email" in session %}
-              <li class="nav-item">
-                  <span class="navbar-text">Welcome, {{ session["name"] }}!  </span>
-              </li>
-              <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="{{ url_for('logout') }}">Logout</a>
-              </li>
-          {% else %}
-              <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login with Google</a>
-              </li>
-          {% endif %}
-      </ul>
+          <li class="nav-item">
+              <span class="navbar-text user-greeting">Welcome, {{ session["name"] }}!  </span>
+          </li>
+          <li class="nav-item">
+              <a class="btn btn-primary custom-btn" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+      {% else %}
+          <li class="nav-item">
+              <a class="btn btn-primary custom-btn" href="{{ url_for('login') }}">Login with Google</a>
+          </li>
+      {% endif %}
+    </ul>
       </div>
     </div>
   </nav>
