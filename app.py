@@ -93,16 +93,20 @@ def create_rating():
     return redirect(f'/ratings/{created_rating.rating_id}')
 
 @app.get('/ratings/search')
-def search_ratings():
-    found_ratings = []
+def search_ratings():    
     first_name = request.args.get('q-first-name', '')
     last_name = request.args.get('q-last-name', '')
     subject = request.args.get('q-subject', '')
     course_num = request.args.get('q-course-num', '')
-    found_ratings = rating_repository_singleton.search_ratings(first_name, last_name, subject, course_num)
-    size = len(found_ratings)
-    avg_rating = rating_repository_singleton.get_avg_rating(found_ratings)
-    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=True, avg_rating=avg_rating, size=size)
+
+    if not first_name and not last_name and not subject and not course_num:
+        found_ratings = None
+        avg_rating = None
+    else:
+        found_ratings = rating_repository_singleton.search_ratings(first_name, last_name, subject, course_num)
+        avg_rating = rating_repository_singleton.get_avg_rating(found_ratings)
+
+    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=True, avg_rating=avg_rating)
 
 @app.route("/login")
 def login():

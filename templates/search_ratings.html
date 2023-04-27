@@ -15,21 +15,18 @@
   </div>
   <label for="q-subject" class="form-label">Search by subject code (ex. ITSC)</label>  
   <div class="input-group">
-    <input type="text" name="q-subject" id="q-subject" class="form-control" autocomplete="off">
+    <input type="text" name="q-subject" id="q-subject" class="form-control" autocomplete="off" maxlength="4" pattern="[a-zA-Z]+">
   </div>
   <label for="q-course-num" class="form-label">Search by course number (ex. 3155)</label>  
   <div class="input-group">
-    <input type="text" name="q-course-num" id="q-course-num" class="form-control" autocomplete="off">
+    <input type="text" name="q-course-num" id="q-course-num" class="form-control" autocomplete="off" maxlength="4" pattern="\d+">
   </div>
   <br />
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
-<!-- If q is passed to the template, we did a search already -->
-{% if search_query == True %}
-  {% if ratings|length > 0 %}  
-    
-    
-
+<!-- Show search results only if the ratings variable is not None -->
+{% if ratings is not none %}
+  {% if ratings|length > 0 %}
     <p>Average rating: {{ avg_rating }}</p>
 
     <table class="table">
