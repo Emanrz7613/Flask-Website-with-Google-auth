@@ -78,8 +78,7 @@ def create_ratings_form():
                            first_name=first_name, last_name=last_name, semester=semester)
 
 @app.post('/ratings')
-def create_rating():
-    #TODO: Get more info from Eric about user_id/first_name/last_name and how works with google login    
+def create_rating():   
     first_name = request.form.get('first_name', '')
     last_name = request.form.get('last_name', '')
     subject = request.form.get('subject', '')
@@ -94,12 +93,20 @@ def create_rating():
     return redirect(f'/ratings/{created_rating.rating_id}')
 
 @app.get('/ratings/search')
-def search_ratings():
-    found_ratings = []
-    q = request.args.get('q', '')
-    if q != '':
-        found_ratings = rating_repository_singleton.search_ratings(q)
-    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=q)
+def search_ratings():    
+    first_name = request.args.get('q-first-name', '')
+    last_name = request.args.get('q-last-name', '')
+    subject = request.args.get('q-subject', '')
+    course_num = request.args.get('q-course-num', '')
+
+    if not first_name and not last_name and not subject and not course_num:
+        found_ratings = None
+        avg_rating = None
+    else:
+        found_ratings = rating_repository_singleton.search_ratings(first_name, last_name, subject, course_num)
+        avg_rating = rating_repository_singleton.get_avg_rating(found_ratings)
+
+    return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=True, avg_rating=avg_rating)
 
 @app.route("/login")
 def login():

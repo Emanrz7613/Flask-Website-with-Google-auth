@@ -36,7 +36,7 @@
   <tbody>
     {% for rating, first_name, last_name, subject, course_num in ratings %}
     <tr>
-      <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
+        <td><a href="/ratings/{{ rating.rating_id }}">{{ rating.rating_id }}</a></td>
         <td>{{ rating.user_id }}</td>
         <td>{{ first_name }} {{ last_name }}</td>
         <td>{{ subject }}</td>
