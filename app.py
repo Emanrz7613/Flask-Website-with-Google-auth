@@ -19,6 +19,7 @@ def login_required(f):
 app = Flask(__name__)
 
 # Google OAuth2 Configuration
+app.config['SESSION_PERMANENT'] = False
 app.config['SECRET_KEY'] = 'ebade5ab48174feaae42e6f0e0eb8c77'
 app.config['GOOGLE_OAUTH_CLIENT_ID'] = '619389714744-hb1q3g3opv4jb6dm9hligalpvik9ih9e.apps.googleusercontent.com'
 app.config['GOOGLE_OAUTH_CLIENT_SECRET'] = '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'
@@ -104,7 +105,7 @@ def search_ratings():
         avg_rating = None
     else:
         found_ratings = rating_repository_singleton.search_ratings(first_name, last_name, subject, course_num)
-        avg_rating = rating_repository_singleton.get_avg_rating(found_ratings)
+        avg_rating = round(rating_repository_singleton.get_avg_rating(found_ratings),1)
 
     return render_template('search_ratings.html', search_active=True, ratings=found_ratings, search_query=True, avg_rating=avg_rating)
 
