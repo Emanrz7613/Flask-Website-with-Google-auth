@@ -1,13 +1,30 @@
 {% extends '_layout.html' %}
 
-{% block title %}UNCC Professor Rating | Home{% endblock %}
+{% block title %}Niner Rater | Home{% endblock %}
 
 {% block body %}
-<body style="background-color:#F6D653;">
-  <h1 class="mb-5">UNCC Professor Ratings</h1>
-  <p class="mb-3">Welcome to the UNCC Professor Rating App! Here, you can create reviews of professors and save them in our in-memory database.</p>
-  <p>Check out our professor rating form to get started!</p>
-  <h2>Please Log in using your Google account by clicking on the Login button in the upper right corner</h2>
+
+<body style="background-color:#F6D653; font-family: Arial, sans-serif;">
+  <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+    <h1 style="color: #3C3C3C; text-align: center; margin-bottom: 50px;">Welcome to Niner Rater</h1>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+      <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); margin: 10px;">
+        <h2 style="color: #3C3C3C; margin-bottom: 20px;">Rate Your Professors</h2>
+        <p style="color: #3C3C3C;">Niner Rater is designed to help UNC Charlotte students assess their professors. With our app, you can create reviews and save them in our in-memory database. Plus, you can search and view ratings in a variety of ways. You can search by any combination of name, class number, or subject. All search fields can be used, or you can select certain fields to input. Plus, the average rating of the search results will be displayed.</p>
+        <p style="color: #3C3C3C;">If you want to view more information about a particular rating, simply click on the individual submission to see all of the information provided with the rating, including the user who submitted it.</p>
+        <p style="color: #3C3C3C;">Ratings can be searched in multiple ways. A basic search can be performed through the All Ratings page, but a more detailed search baised on multiple combinations of fields can be performed at the Search page.</p>
+        <p style="color: #3C3C3C;">Best of all, you can view ratings without logging in, but if you want to create a rating, you'll need to log in with your UNC Charlotte Google account.</p>
+        <a href="/ratings" style="background-color: #108f4f; color: #ffffff; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 20px; display: block; text-align: center;">View Ratings Now</a>
+      </div>
+    
+      <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); margin: 10px;">
+        <h2 style="color: #3C3C3C; margin-bottom: 20px;">Log In With Google</h2>
+        <p style="color: #3C3C3C;">Ready to start rating your professors? Log in using your UNC Charlotte Google account by clicking the button below.</p>
+        <a href="{{ url_for('login') }}" style="background-color: #2d73ee; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 20px; display: block; text-align: center;">Log In With Google</a>
+      </div>
+    </div>
+  </div>
 </body>
 {% endblock %}
 
